@@ -6,7 +6,7 @@ import pandas as pd
 import os
 
 #start eviews
-eviewsapp =evp.GetEViewsApp(instance='either',showwindow=True)
+eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
@@ -44,7 +44,7 @@ print('creating workfile')
 evp.Run('workfile quarterly q 1980Q1 2021Q4',app = eviewsapp)
 #open pareto db
 print('opening pareto')
-evp.Run('open Z:\\DATABASE\\pareto.edb',app = eviewsapp)
+evp.Run('open '+pareto_db,app = eviewsapp)
 
 for series in q_series:
     
@@ -60,5 +60,7 @@ for series in q_series:
     os.makedirs('data/pareto',exist_ok=True)
     print('dumping: ' + name_scheme[series])
     df.to_csv('data/pareto/'+name_scheme[series]+'.csv')
+    
+
     
     
