@@ -10,19 +10,24 @@ eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
-q_series = ["ACANLIUNA_Q", 
-"ACANLIUNR_Q",
-"ACAPRICNA_Q",
-"ACAPRICNR_Q",
-"ACASALUNA_Q",
-"ACASALUNR_Q",
-"ACASMMURA_Q",
-"ACASSMURA_Q",
-"ACASTMURA_Q",
-"ACASNLRVA_Q",
-"ACASMMURA_Q",
-"ACASSMURA_Q",
-"ACASTMURA_Q"]
+geo = 'ACA'
+
+
+q_series = ["NLIUNA_Q", 
+"NLIUNR_Q",
+"PRICNA_Q",
+"PRICNR_Q",
+"SALUNA_Q",
+"SALUNR_Q",
+"SMMURA_Q",
+"SSMURA_Q",
+"ASTMURA_Q",
+"SNLRVA_Q",
+"SMMURA_Q",
+"SSMURA_Q",
+"STMURA_Q"]
+
+q_series = [geo+series for series in q_series]
 
 name_scheme = {"ACANLIUNA_Q":"new_list_sa",
  "ACANLIUNR_Q":"new_list_act",
