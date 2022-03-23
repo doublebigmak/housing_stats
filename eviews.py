@@ -166,7 +166,7 @@ name_scheme = {"ACANLIUNA_Q":"new_list_sa",
 
 # last quarter for series
 recent_q = '2021Q4'
-recent_m = '2021M02'
+recent_m = '2022M02'
 recent_a='2021'
 
 
