@@ -8,6 +8,7 @@ import os
 #start eviews
 eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 
+#make sure you establish connection to thsi folder first
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
 geo = 'ACA'
@@ -165,8 +166,8 @@ name_scheme = {"ACANLIUNA_Q":"new_list_sa",
 
 
 # last quarter for series
-recent_q = '2021Q4'
-recent_m = '2022M02'
+recent_q = '2022Q1'
+recent_m = '2022M03'
 recent_a='2021'
 
 
