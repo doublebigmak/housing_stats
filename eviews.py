@@ -11,6 +11,11 @@ eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 #make sure you establish connection to thsi folder first
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
+# last quarter for series
+recent_q = '2022Q1'
+recent_m = '2022M05'
+recent_a='2021'
+
 geo = 'ACA'
 
 
@@ -164,11 +169,6 @@ name_scheme = {"ACANLIUNA_Q":"new_list_sa",
  'acapa3trr':'rent_chg_tot'
  }
 
-
-# last quarter for series
-recent_q = '2022Q1'
-recent_m = '2022M03'
-recent_a='2021'
 
 
 command = 'workfile quarterly q 1980Q1 '+recent_q
