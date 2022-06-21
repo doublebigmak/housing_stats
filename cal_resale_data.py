@@ -7,6 +7,7 @@ from datetime import datetime, date, timedelta
 #path = 'C:\\Users\\mmak\\Desktop\\calgary\\Calgary_Resale.xlsx'
 #pra_mac drive
 path = 'J:\\Alberta\\Calgary\\Calgary_Resale.xlsx'
+
 current_day = date.today().replace(day=1)
 current_month = datetime.now().month
 prev_month = current_day - timedelta(days=1)
