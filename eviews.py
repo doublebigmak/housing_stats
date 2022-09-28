@@ -12,8 +12,8 @@ eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
 # last quarter for series
-recent_q = '2022Q1'
-recent_m = '2022M05'
+recent_q = '2022Q2'
+recent_m = '2022M08'
 recent_a='2021'
 
 geo = 'ACA'
@@ -99,20 +99,20 @@ geo_m_series = [geo+series.upper() for series in m_series]
 geo_a_series = [geo+series.upper() for series in a_series]
 
 
-name_scheme = {"ACANLIUNA_Q":"new_list_sa",
- "ACANLIUNR_Q":"new_list_act",
- "ACAPRICNA_Q":"avg_price_sa",
- "ACAPRICNR_Q":"avg_price_act",
- "ACASALUNA_Q":"sales_sa",
- "ACASALUNR_Q":"sales_act",
- "ACASMMURA_Q":"multi_starts",
- "ACASSMURA_Q":"single_starts",
- "ACASTMURA_Q":"total_starts",
- "ACASNLRVA_Q":"sales_new_list",
- "ACASMMURA_Q":"multi_starts_saar",
- "ACASSMURA_Q":"single_starts_saar",
- "ACASTMURA_Q":"total_starts_saar",
- "ACASNLRVA_Q":"snl_sa",
+name_scheme = {"acanliuna_q":"new_list_sa",
+ "acanliunr_q":"new_list_act",
+ "acapricna_q":"avg_price_sa",
+ "acapricnr_q":"avg_price_act",
+ "acasaluna_q":"sales_sa",
+ "acasalunr_q":"sales_act",
+ "acasmmura_q":"multi_starts",
+ "acassmura_q":"single_starts",
+ "acastmura_q":"total_starts",
+ "acasnlrva_q":"sales_new_list",
+ "acasmmura_q":"multi_starts_saar",
+ "acassmura_q":"single_starts_saar",
+ "acastmura_q":"total_starts_saar",
+ "acasnlrva_q":"snl_sa",
  "acansmurr":"sfd_unabsorb",
  "acantmurr":"total_unabsorb",
  "acanrmurr":"row_unabsorb",
@@ -171,65 +171,55 @@ name_scheme = {"ACANLIUNA_Q":"new_list_sa",
 
 
 
-command = 'workfile quarterly q 1980Q1 '+recent_q
 
-#create workfile
-
-print('creating workfile')
-evp.Run(command,app = eviewsapp)
 #open pareto db
 print('opening pareto')
 evp.Run('open '+pareto_db,app = eviewsapp)
 
-for series in geo_q_series:
-    
-    print('fetching '+series)
-    
 
-    command= "fetch " + series.lower()
-    evp.Run(command,app = eviewsapp)
 
-    df=evp.GetWFAsPython(app=eviewsapp, wfname="quarterly", namefilter=series.lower())
+def fetch_series(series_group,timeframe,current_time):
+
+    if (timeframe == 'monthly'):
+        workfile_cmd = 'workfile monthly m 1980M01 '+current_time
+    elif (timeframe=='quarterly'):
+        workfile_cmd = 'workfile quarterly q 1980Q1 '+current_time
+    else:
+        workfile_cmd = 'workfile annual a 1992 '+current_time
+    print('creating workfile')
+    evp.Run(workfile_cmd,app = eviewsapp)
+
+
+    for series in series_group:
     
-    df=df.rename(columns={series.upper():name_scheme[series.upper()]})
-    os.makedirs('data/pareto',exist_ok=True)
-    print('dumping: ' + name_scheme[series])
-    df.to_csv('data/pareto/'+name_scheme[series]+'.csv')
+        print('fetching '+series)
+        
 
-m_command = 'workfile monthly m 1980M01 '+recent_m
-evp.Run(m_command,app = eviewsapp)
-#open pareto db
+        command= "fetch " + series.lower()
+        evp.Run(command,app = eviewsapp)
 
-for series in geo_m_series:
-    
-    print('fetching '+series)
-    
+        df=evp.GetWFAsPython(app=eviewsapp, wfname=timeframe, namefilter=series.lower())
+        
+        name = series.lower()
+        try:
+            #df=df.rename(columns={series:name_scheme[name]})
+            os.makedirs('data/pareto',exist_ok=True)
+            print('dumping: ' + name_scheme[name])
+            #df.to_csv('data/pareto/'+name_scheme[name]+'.csv')
+            df.to_csv('data/pareto/'+name+'.csv')
+        except KeyError as e:
+            os.makedirs('data/pareto',exist_ok=True)
+            print('dumping: ' + name)
+            df.to_csv('data/pareto/'+name+'.csv')
 
-    command= "fetch " + series.lower()
-    evp.Run(command,app = eviewsapp)
 
-    df=evp.GetWFAsPython(app=eviewsapp, wfname="monthly", namefilter=series.lower())
-    
-    df=df.rename(columns={series:name_scheme[series.lower()]})
-    os.makedirs('data/pareto',exist_ok=True)
-    print('dumping: ' + name_scheme[series.lower()])
-    df.to_csv('data/pareto/'+name_scheme[series.lower()]+'.csv')
 
-    
-a_command = 'workfile annual a 1992 '+recent_a
-evp.Run(a_command,app = eviewsapp)
+#fetch_series(geo_m_series,'monthly',recent_m)
+#fetch_series(geo_a_series,'annual',recent_a)
+#fetch_series(geo_q_series,'quarterly',recent_q)
 
-for series in geo_a_series:
-    
-    print('fetching '+series)
-    
+resales = 'abrnliunr_q,abrpricnr_q,abrsalunr_q,abrvolcnr_q,acanliunr_q,acapricnr_q,acasalunr_q,acavolcnr_q,aednliunr_q,aedpricnr_q,aedsalunr_q,aedvolcnr_q,afmnliunr_q,afmpricnr_q,afmsalunr_q,afmvolcnr_q,agpnliunr_q,agppricnr_q,agpsalunr_q,agpvolcnr_q,alenliunr_q,alepricnr_q,alesalunr_q,alevolcnr_q,almnliunr_q,almpricnr_q,almsalunr_q,almvolcnr_q,amenliunr_q,amepricnr_q,amesalunr_q,amevolcnr_q,anenliunr_q,anepricnr_q,anesalunr_q,anevolcnr_q,arenliunr_q,arepricnr_q,aresalunr_q,arevolcnr_q,awenliunr_q,awepricnr_q,awesalunr_q,awevolcnr_q,azznliunr_q,azzpricnr_q,azzsalunr_q,azzvolcnr_q'.split(',')
+starts = 'acasamurr,acasemurr,acasrmurr,acassmurr,acastmurr,aedsamurr,aedsemurr,aedsrmurr,aedssmurr,aedstmurr,agpsalurr,agpselurr,agpsrlurr,agpsslurr,agpstlurr,alesalurr,aleselurr,alesrlurr,alesslurr,alestlurr,amesalurr,ameselurr,amesrlurr,amesslurr,amestlurr,aresalurr,areselurr,aresrlurr,aresslurr,arestlurr,awbsalurr,awbselurr,awbsrlurr,awbsslurr,awbstlurr,azzsauurr,azzseuurr,azzsruurr,azzssuurr,azzstuurr'.split(',')
 
-    command= "fetch " + series.lower()
-    evp.Run(command,app = eviewsapp)
-
-    df=evp.GetWFAsPython(app=eviewsapp, wfname="annual", namefilter=series.lower())
-    
-    df=df.rename(columns={series:name_scheme[series.lower()]})
-    os.makedirs('data/pareto',exist_ok=True)
-    print('dumping: ' + name_scheme[series.lower()])
-    df.to_csv('data/pareto/'+name_scheme[series.lower()]+'.csv')
+fetch_series(resales,'quarterly',recent_q)
+fetch_series(starts,'monthly',recent_m)
