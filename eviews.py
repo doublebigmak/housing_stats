@@ -12,9 +12,9 @@ eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
 # last quarter for series
-recent_q = '2022Q2'
-recent_m = '2022M08'
-recent_a='2021'
+recent_q = '2022Q4'
+recent_m = '2022M12'
+recent_a='2022'
 
 geo = 'ACA'
 
