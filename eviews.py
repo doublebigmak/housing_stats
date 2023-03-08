@@ -16,7 +16,7 @@ recent_q = '2022Q4'
 recent_m = '2022M12'
 recent_a='2022'
 
-geo = 'ACA'
+geo = 'AZZ'
 
 
 q_series = ["NLIUNA_Q", 
@@ -214,12 +214,12 @@ def fetch_series(series_group,timeframe,current_time):
 
 
 
-#fetch_series(geo_m_series,'monthly',recent_m)
-#fetch_series(geo_a_series,'annual',recent_a)
-#fetch_series(geo_q_series,'quarterly',recent_q)
+fetch_series(geo_m_series,'monthly',recent_m)
+fetch_series(geo_a_series,'annual',recent_a)
+fetch_series(geo_q_series,'quarterly',recent_q)
 
 resales = 'abrnliunr_q,abrpricnr_q,abrsalunr_q,abrvolcnr_q,acanliunr_q,acapricna_q,acapricnr_q,acasaluna_q,acasalunr_q,acasmmura_q,acassmura_q,acastmura_q,acavolcnr_q,aednliunr_q,aedpricnr_q,aedsalunr_q,aedvolcnr_q,afmnliunr_q,afmpricnr_q,afmsalunr_q,afmvolcnr_q,agpnliunr_q,agppricnr_q,agpsalunr_q,agpvolcnr_q,alenliunr_q,alepricnr_q,alesalunr_q,alevolcnr_q,almnliunr_q,almpricnr_q,almsalunr_q,almvolcnr_q,amenliunr_q,amepricnr_q,amesalunr_q,amevolcnr_q,anenliunr_q,anepricnr_q,anesalunr_q,anevolcnr_q,arenliunr_q,arepricnr_q,aresalunr_q,arevolcnr_q,awenliunr_q,awepricnr_q,awesalunr_q,awevolcnr_q,azznliunr_q,azzpricnr_q,azzsalunr_q,azzvolcnr_q'.split(',')
 starts = 'acasamurr,acasemurr,acasrmurr,acassmurr,acastmurr,aedsamurr,aedsemurr,aedsrmurr,aedssmurr,aedstmurr,agpsalurr,agpselurr,agpsrlurr,agpsslurr,agpstlurr,alesalurr,aleselurr,alesrlurr,alesslurr,alestlurr,amesalurr,ameselurr,amesrlurr,amesslurr,amestlurr,aresalurr,areselurr,aresrlurr,aresslurr,arestlurr,awbsalurr,awbselurr,awbsrlurr,awbsslurr,awbstlurr,azzsauurr,azzseuurr,azzsruurr,azzssuurr,azzstuurr'.split(',')
 
-fetch_series(resales,'quarterly',recent_q)
-fetch_series(starts,'monthly',recent_m)
+#fetch_series(resales,'quarterly',recent_q)
+#fetch_series(starts,'monthly',recent_m)
