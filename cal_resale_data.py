@@ -8,7 +8,13 @@ from datetime import datetime, date, timedelta
 #pra_mac drive
 path = 'J:\\Alberta\\Calgary\\Calgary_Resale.xlsx'
 
-current_day = date.today().replace(day=1)
+today = date.today()
+
+if today.day < 15:
+    current_day = date.today().replace(day=1)
+
+else:
+    current_day = date.today()
 current_month = datetime.now().month
 prev_month = current_day - timedelta(days=15)
 os.makedirs('data/calgary_resales',exist_ok=True)
@@ -39,6 +45,8 @@ City of Calgary data
 '''
 
 date_range = pd.date_range(start='2006/01/01', end = prev_month, freq='M')
+
+print(date_range[-1])
 sheet_names = ['CREB - City of Calgary Total','CREB - City Detached','CREB - City Apartment','CREB - City Semi-detached','CREB - City Row']
 for sheet in sheet_names:
     #read sheets
