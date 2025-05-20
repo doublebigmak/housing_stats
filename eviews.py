@@ -12,11 +12,11 @@ eviewsapp =evp.GetEViewsApp(instance='either',showwindow=False)
 pareto_db = 'Z:\\DATABASE\\pareto.edb'
 
 # last quarter for series
-recent_q = '2022Q4'
-recent_m = '2022M12'
-recent_a='2022'
+recent_q = '2024Q4'
+recent_m = '2024M12'
+recent_a='2024'
 
-geo = 'ACA'
+geo = 'mwi'
 
 
 q_series = ["NLIUNA_Q", 
@@ -91,7 +91,12 @@ a_series=[
 'pa32rr',
 'pa33rr',
 'pa3brr',
-'pa3trr'
+'pa3trr',
+'SALUNR_A',
+'stmurr_a',
+'srmurr_a',
+'ssmurr_a',
+'samurr_a',
 ]
 
 geo_q_series = [geo+series.upper() for series in q_series]

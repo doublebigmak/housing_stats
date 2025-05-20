@@ -1,0 +1,22 @@
+# This is a Databricks asset bundle definition for housing_stats.
+# The file was generated automatically by the Databricks extension. 
+# It's based on the configuration located in `.databricks/project.json`.
+# If you don't want this file to be created automatically, remove the `.databricks/project.json`.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: housing_stats
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-5528824749503745.5.azuredatabricks.net
+      root_path: /Users/mmak@cmhc-schl.gc.ca/.ide/housing_stats-b08d944e
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://adb-5528824749503745.5.azuredatabricks.net
